@@ -143,15 +143,15 @@ function! s:outline_info.create_heading(which, heading_line, matched_line, conte
     elseif keyword == 'test'
       " test "****" do
       let type = 'method'
-      let word = substitute(word, 'do\>', '', '')
+      let word = substitute(word, 'do$', '', '')
     elseif keyword == 'setup'
       " setup do
       let type = 'method'
-      let word = substitute(word, 'do\>', '', '')
+      let word = substitute(word, 'do$', '', '')
     elseif keyword == 'teardown'
       " teardown do
       let type = 'method'
-      let word = substitute(word, 'do\>', '', '')
+      let word = substitute(word, 'do$', '', '')
     elseif keyword =~ '^\%(BEGIN\|END\)$'
       " BEGIN, END
       let word = substitute(word, '\s*{.*$', '', '')
