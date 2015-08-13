@@ -37,6 +37,7 @@ let s:outline_info = {
       \ 'heading_keywords': [
       \   'module', 'class', 'protected', 'private',
       \   'def', '[mc]\=attr_\(accessor\|reader\|writer\)', 'alias',
+      \   'test', 'setup', 'teardown',
       \   'BEGIN', 'END', '__END__',
       \   ],
       \
@@ -139,6 +140,18 @@ function! s:outline_info.create_heading(which, heading_line, matched_line, conte
       let type = 'method'
       let word = substitute(word, '\<alias\s*', '', '')
       let word = substitute(word, ':\=\(\S\+\)\s\+:\=\(\S\+\)', '\1 => \2', '')
+    elseif keyword == 'test'
+      " test "****" do
+      let type = 'method'
+      let word = substitute(word, 'do\>', '', '')
+    elseif keyword == 'setup'
+      " setup do
+      let type = 'method'
+      let word = substitute(word, 'do\>', '', '')
+    elseif keyword == 'teardown'
+      " teardown do
+      let type = 'method'
+      let word = substitute(word, 'do\>', '', '')
     elseif keyword =~ '^\%(BEGIN\|END\)$'
       " BEGIN, END
       let word = substitute(word, '\s*{.*$', '', '')
